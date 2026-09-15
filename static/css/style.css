@@ -1,0 +1,564 @@
+/* ============================================
+   Trello Clon - Dark Theme Styles
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0f0f23;
+    color: #e0e0e0;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ---- Layout ---- */
+
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.app-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-bottom: 2px solid #0f3460;
+    padding: 30px 0;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.header-content h1 {
+    font-size: 2.5rem;
+    color: #e94560;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #7f8c9b;
+    font-size: 1rem;
+}
+
+.main-content {
+    padding-bottom: 40px;
+}
+
+/* ---- Stats Section ---- */
+
+.stats-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #7f8c9b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-total {
+    background: #1a1a2e;
+    border: 1px solid #0f3460;
+    color: #3498db;
+}
+
+.stat-pending {
+    background: #1a1a2e;
+    border: 1px solid #f39c12;
+    color: #f39c12;
+}
+
+.stat-progress {
+    background: #1a1a2e;
+    border: 1px solid #3498db;
+    color: #3498db;
+}
+
+.stat-completed {
+    background: #1a1a2e;
+    border: 1px solid #27ae60;
+    color: #27ae60;
+}
+
+.progress-bar-container {
+    background: #1a1a2e;
+    border-radius: 25px;
+    height: 30px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #0f3460;
+    margin-bottom: 30px;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, #27ae60, #2ecc71);
+    height: 100%;
+    transition: width 0.5s ease;
+    border-radius: 25px;
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* ---- Actions Section ---- */
+
+.actions-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.filter-input, .filter-select {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #2c3e50;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    font-size: 0.9rem;
+}
+
+/* ---- Buttons ---- */
+
+.btn {
+    padding: 10px 22px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary {
+    background: #e94560;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #c7384f;
+}
+
+.btn-secondary {
+    background: #2c3e50;
+    color: #e0e0e0;
+}
+
+.btn-secondary:hover {
+    background: #34495e;
+}
+
+.btn-filter {
+    background: #0f3460;
+    color: #3498db;
+}
+
+.btn-filter:hover {
+    background: #1a4a8a;
+}
+
+.btn-reset {
+    background: transparent;
+    color: #7f8c9b;
+    border: 1px solid #2c3e50;
+}
+
+.btn-reset:hover {
+    background: #2c3e50;
+    color: #e0e0e0;
+}
+
+.btn-state {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-state:hover {
+    transform: translateY(-1px);
+}
+
+.btn-state.pendiente {
+    background: #f39c12;
+    color: #000;
+}
+
+.btn-state.en_curso {
+    background: #3498db;
+    color: #fff;
+}
+
+.btn-state.finalizada {
+    background: #27ae60;
+    color: #fff;
+}
+
+.btn-delete {
+    background: #e74c3c;
+    color: #fff;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-delete:hover {
+    background: #c0392b;
+}
+
+/* ---- Form ---- */
+
+.form-section {
+    background: #1a1a2e;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #0f3460;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-section h2 {
+    margin-bottom: 20px;
+    color: #e94560;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    color: #7f8c9b;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #2c3e50;
+    background: #0f0f23;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* ---- Tasks Grid ---- */
+
+.tasks-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+}
+
+.task-card {
+    background: #1a1a2e;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #2c3e50;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.task-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border-color: #0f3460;
+}
+
+.task-card .task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.task-card .task-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+    flex: 1;
+}
+
+.task-card .task-id {
+    font-size: 0.75rem;
+    color: #7f8c9b;
+    background: #0f0f23;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+.task-card .task-description {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.task-card .task-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.task-meta-item {
+    font-size: 0.8rem;
+}
+
+.task-meta-item .label {
+    color: #7f8c9b;
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.task-meta-item .value {
+    color: #e0e0e0;
+    font-weight: 600;
+}
+
+.task-card .task-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid #2c3e50;
+}
+
+.priority-badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.priority-badge.prioridad-1 {
+    background: #e74c3c33;
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+}
+
+.priority-badge.prioridad-2 {
+    background: #f39c1233;
+    color: #f39c12;
+    border: 1px solid #f39c12;
+}
+
+.priority-badge.prioridad-3 {
+    background: #27ae6033;
+    color: #27ae60;
+    border: 1px solid #27ae60;
+}
+
+.status-badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-badge.pendiente {
+    background: #f39c1233;
+    color: #f39c12;
+}
+
+.status-badge.en_curso {
+    background: #3498db33;
+    color: #3498db;
+}
+
+.status-badge.finalizada {
+    background: #27ae6033;
+    color: #27ae60;
+}
+
+.task-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+/* ---- Empty State ---- */
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #7f8c9b;
+    font-size: 1.2rem;
+}
+
+/* ---- Toast ---- */
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 14px 24px;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.success { background: #27ae60; }
+.toast.error { background: #e74c3c; }
+.toast.info { background: #3498db; }
+
+/* ---- Responsive ---- */
+
+@media (max-width: 768px) {
+    .app-header {
+        padding: 20px 0;
+    }
+    .header-content h1 {
+        font-size: 1.8rem;
+    }
+    .tasks-grid {
+        grid-template-columns: 1fr;
+    }
+    .filter-bar {
+        margin-left: 0;
+        width: 100%;
+    }
+    .filter-input, .filter-select {
+        flex: 1;
+        min-width: 120px;
+    }
+    .actions-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---- Scrollbar ---- */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f0f23;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2c3e50;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #34495e;
+}
