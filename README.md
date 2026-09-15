@@ -220,10 +220,13 @@ server {
 
 ---
 
-## 🔑 Autor
+## 🔑 Autores
+**Alvaro Nuñez **  
+**Juan Benegas **
+**Maximo Aceituno ** 
+**Geronimo Concina **
 
-**gconcina** (gconcinalo@gmail.com)  
-Tecnicatura Superior en Desarrollo de Software — Programación I (2026)
+Tecnicatura Superior en Desarrollo de Software — Programación I (2026) IES 9008 Manuel Belgrano
 
 ---
 
