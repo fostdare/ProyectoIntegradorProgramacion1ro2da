@@ -2,18 +2,7 @@
 
 Aplicación de consola para gestión de tareas al estilo Trello.
 
----
-
-## 👥 Autores
-
-- **Alvaro Nuñez**
-- **Juan Benegas**
-- **Maximo Aceituno**
-- **Geronimo Concina**
-
----
-
-## 🚀 Ejecución
+## Ejecución
 
 ```bash
 python main.py
