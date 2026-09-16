@@ -6,6 +6,15 @@ Un clon de Trello completo con interfaz web moderna, API REST y lógica de domin
 
 ---
 
+## 👥 Autores
+
+- **Alvaro Nuñez**
+- **Juan Benegas**
+- **Maximo Aceituno**
+- **Geronimo Concina**
+
+---
+
 ## 🚀 Despliegue Rápido
 
 ### Requisitos previos
@@ -89,7 +98,7 @@ ProyectoIntegradorProgramacion1ro2da/
 |--------|------|-------------|
 | `GET` | `/` | Página web principal (frontend) |
 | `GET` | `/api/tareas` | Listar todas las tareas |
-| `GET` | `/api/tareas/{id}` | Obtener una tarea por ID |
+| `GET` | `/api/tareas/{id}` | Obtener tarea individual |
 | `GET` | `/api/tareas/estadisticas` | Estadísticas del tablero |
 | `GET` | `/api/tareas/filtrar` | Filtrar por estado/categoría/responsable |
 | `POST` | `/api/tareas` | Crear nueva tarea (body JSON) |
@@ -190,21 +199,6 @@ EXPOSE 8000
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
-### Con Nginx como reverse proxy
-
-```nginx
-server {
-    listen 80;
-    server_name tu-dominio.com;
-    
-    location / {
-        proxy_pass http://127.0.0.1:8000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-    }
-}
-```
-
 ---
 
 ## 🎨 Características del Frontend
@@ -220,13 +214,10 @@ server {
 
 ---
 
-## 🔑 Autores
-**Alvaro Nuñez**  
-**Juan Benegas**
-**Maximo Aceituno** 
-**Geronimo Concina**
+## 🔑 Autor
 
-Tecnicatura Superior en Desarrollo de Software — Programación I (2026) IES 9008 Manuel Belgrano
+**fostdare** (gconcinalo@gmail.com)  
+Tecnicatura Superior en Desarrollo de Software — Programación I (2026)
 
 ---
 
