@@ -48,3 +48,18 @@ def mostrar_tabla_tareas(lista_tareas):
     for t in lista_tareas:
         print(f"{t['id']:<4} | {t['titulo'][:18]:<20} | {t['estado']:<12} | {t['prioridad']:<5} | {t['responsable'][:13]:<15}")
     print("-" * 80)
+
+def mostrar_tarea_detalle(tarea):
+    """
+    Imprime los detalles completos de una tarea.
+    """
+    print(f"\n{'─' * 50}")
+    print(f"  ID:          {tarea['id']}")
+    print(f"  Título:      {tarea['titulo']}")
+    print(f"  Descripción: {tarea['descripcion']}")
+    print(f"  Prioridad:   {tarea['prioridad']} {'(Alta)' if tarea['prioridad']==1 else '(Media)' if tarea['prioridad']==2 else '(Baja)'}")
+    print(f"  Estado:      {tarea['estado']}")
+    print(f"  Categoría:   {tarea['categoria']}")
+    print(f"  Responsable: {tarea['responsable']}")
+    print(f"  Fecha Límite:{tarea['fecha_limite']}")
+    print(f"{'─' * 50}\n")

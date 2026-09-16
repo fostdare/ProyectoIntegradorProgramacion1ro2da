@@ -1,12 +1,22 @@
 [
     {
         "id": 1,
-        "titulo": "penesexo",
-        "descripcion": "vaginas",
+        "titulo": "demo",
+        "descripcion": "Proyecto integrador Programacion I 2026",
         "prioridad": 1,
         "estado": "pendiente",
-        "categoria": "frontend",
-        "responsable": "elri copito",
-        "fecha_limite": "2027-07-11"
+        "categoria": "Dev",
+        "responsable": "Juan",
+        "fecha_limite": "2027-09-24"
+    },
+    {
+        "id": 2,
+        "titulo": "demo 2",
+        "descripcion": "presentacion",
+        "prioridad": 1,
+        "estado": "pendiente",
+        "categoria": "dev",
+        "responsable": "gero",
+        "fecha_limite": "2027-06-03"
     }
 ]

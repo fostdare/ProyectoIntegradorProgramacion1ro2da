@@ -1,6 +1,5 @@
 # persistencia.py
 # Módulo encargado de la lectura y escritura de archivos (JSON, CSV, TXT)
-# Rutas actualizadas para usar rutas absolutas basadas en la ubicación del módulo.
 
 import json
 import csv
