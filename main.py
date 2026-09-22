@@ -12,13 +12,19 @@ RUTA_LOG = persistencia.RUTA_LOG
 def submenu_cambio_estado(lista_tareas):
     """Submenú para modificar el estado de una tarea."""
     print("\n--- SUBMENÚ: CAMBIAR ESTADO DE TAREA ---")
+    print()
+    print("  💡 Pulsa Tab para volver al menú principal")
     utils.mostrar_tabla_tareas(lista_tareas)
     
     id_tarea = utils.validar_entero_menu("Ingrese el ID de la tarea a modificar: ", 1, 999999)
+    if id_tarea is None:
+        return
     nuevo_estado = utils.validar_opcion_lista(
         "Ingrese el nuevo estado (pendiente, en_curso, finalizada): ",
         ["pendiente", "en_curso", "finalizada"]
     )
+    if nuevo_estado is None:
+        return
     
     exito = estructuras.cambiar_estado_tarea(lista_tareas, id_tarea, nuevo_estado)
     if exito:
@@ -31,6 +37,8 @@ def submenu_cambio_estado(lista_tareas):
 def submenu_filtrar(lista_tareas):
     """Submenú para filtrar tareas."""
     print("\n--- FILTRAR TAREAS ---")
+    print()
+    print("  💡 Pulsa Tab para volver al menú principal")
     print("1. Por estado")
     print("2. Por categoría")
     print("3. Por responsable")
@@ -38,17 +46,26 @@ def submenu_filtrar(lista_tareas):
     
     opcion = utils.validar_entero_menu("Seleccione una opción: ", 0, 3)
     
+    if opcion is None:
+        return
+    
     if opcion == 1:
         estado = utils.validar_opcion_lista(
             "Ingrese estado (pendiente, en_curso, finalizada): ",
             ["pendiente", "en_curso", "finalizada"]
         )
+        if estado is None:
+            return
         resultado = estructuras.filtrar_tareas(lista_tareas, estado=estado)
     elif opcion == 2:
-        cat = input("Ingrese categoría: ").strip()
+        cat = utils._input_inmediato("Ingrese categoría (Tab para volver): ")
+        if cat is None:
+            return
         resultado = estructuras.filtrar_tareas(lista_tareas, categoria=cat)
     elif opcion == 3:
-        resp = input("Ingrese responsable: ").strip()
+        resp = utils._input_inmediato("Ingrese responsable (Tab para volver): ")
+        if resp is None:
+            return
         resultado = estructuras.filtrar_tareas(lista_tareas, responsable=resp)
     else:
         return
@@ -59,9 +76,14 @@ def submenu_filtrar(lista_tareas):
 
 def submenu_actualizar_tarea(lista_tareas):
     """Submenú para actualizar una tarea existente."""
+    print()
+    print("  💡 Pulsa Tab para volver al menú principal")
     utils.mostrar_tabla_tareas(lista_tareas)
     
     id_tarea = utils.validar_entero_menu("Ingrese el ID de la tarea a actualizar: ", 1, 999999)
+    
+    if id_tarea is None:
+        return
     
     tarea_encontrada = None
     for t in lista_tareas:
@@ -76,13 +98,27 @@ def submenu_actualizar_tarea(lista_tareas):
     print(f"\nTarea actual: {tarea_encontrada['titulo']}")
     print("\nDeje en blanco para no cambiar un campo.\n")
     
-    nuevo_titulo = input(f"  Nuevo título [{tarea_encontrada['titulo']}]: ").strip()
-    nueva_desc = input(f"  Nueva descripción [{tarea_encontrada['descripcion']}]: ").strip()
-    nueva_prio = input(f"  Nueva prioridad (1-3) [{tarea_encontrada['prioridad']}]: ").strip()
-    nuevo_estado = input(f"  Nuevo estado (pendiente/en_curso/finalizada) [{tarea_encontrada['estado']}]: ").strip()
-    nueva_cat = input(f"  Nueva categoría [{tarea_encontrada['categoria']}]: ").strip()
-    nuevo_resp = input(f"  Nuevo responsable [{tarea_encontrada['responsable']}]: ").strip()
-    nueva_fecha = input(f"  Nueva fecha límite (AAAA-MM-DD) [{tarea_encontrada['fecha_limite']}]: ").strip()
+    nuevo_titulo = utils._input_inmediato(f"  Nuevo título [{tarea_encontrada['titulo']}] (Tab para volver): ")
+    if nuevo_titulo is None:
+        return
+    nueva_desc = utils._input_inmediato(f"  Nueva descripción [{tarea_encontrada['descripcion']}] (Tab para volver): ")
+    if nueva_desc is None:
+        return
+    nueva_prio = utils._input_inmediato(f"  Nueva prioridad (1-3) [{tarea_encontrada['prioridad']}] (Tab para volver): ")
+    if nueva_prio is None:
+        return
+    nuevo_estado = utils._input_inmediato(f"  Nuevo estado (pendiente/en_curso/finalizada) [{tarea_encontrada['estado']}] (Tab para volver): ")
+    if nuevo_estado is None:
+        return
+    nueva_cat = utils._input_inmediato(f"  Nueva categoría [{tarea_encontrada['categoria']}] (Tab para volver): ")
+    if nueva_cat is None:
+        return
+    nuevo_resp = utils._input_inmediato(f"  Nuevo responsable [{tarea_encontrada['responsable']}] (Tab para volver): ")
+    if nuevo_resp is None:
+        return
+    nueva_fecha = utils._input_inmediato(f"  Nueva fecha límite (AAAA-MM-DD) [{tarea_encontrada['fecha_limite']}] (Tab para volver): ")
+    if nueva_fecha is None:
+        return
     
     if nuevo_titulo:
         tarea_encontrada["titulo"] = nuevo_titulo
@@ -135,18 +171,37 @@ def menu_principal():
         print("  6. Ver estadísticas de productividad")
         print("  7. Exportar reporte a archivo CSV")
         print("  0. Salir del programa")
+        print()
+        print("  💡 Pulsa Tab en cualquier momento para volver al menú principal")
         print("=" * 45)
         
         opcion = utils.validar_entero_menu("Seleccione una opción: ", 0, 7)
         
+        if opcion is None:
+            continue
+        
         if opcion == 1:
             print("\n--- ALTA DE NUEVA TAREA ---")
             titulo = utils.validar_texto_no_vacio("Ingrese título de la tarea: ")
+            if titulo is None:
+                continue
             desc = utils.validar_texto_no_vacio("Ingrese descripción: ")
+            if desc is None:
+                continue
             prio = utils.validar_entero_menu("Ingrese prioridad (1: Alta, 2: Media, 3: Baja): ", 1, 3)
+            
+            if prio is None:
+                continue
+            
             cat = utils.validar_texto_no_vacio("Ingrese categoría (ej. Dev, Frontend, Backend): ")
+            if cat is None:
+                continue
             resp = utils.validar_texto_no_vacio("Ingrese responsable: ")
+            if resp is None:
+                continue
             limite = utils.validar_texto_no_vacio("Ingrese fecha límite (AAAA-MM-DD): ")
+            if limite is None:
+                continue
             
             nuevo_id = estructuras.obtener_siguiente_id(tareas)
             nueva_t = estructuras.crear_tarea(
@@ -165,6 +220,9 @@ def menu_principal():
             print("2. Filtrar tareas")
             opcion_filtrar = utils.validar_entero_menu("Seleccione: ", 1, 2)
             
+            if opcion_filtrar is None:
+                continue
+            
             if opcion_filtrar == 1:
                 filtradas = estructuras.ordenar_tareas_por_prioridad(tareas)
                 utils.mostrar_tabla_tareas(filtradas)
@@ -177,6 +235,8 @@ def menu_principal():
                 continue
             utils.mostrar_tabla_tareas(tareas)
             id_tarea = utils.validar_entero_menu("Ingrese el ID de la tarea a ver: ", 1, 999999)
+            if id_tarea is None:
+                continue
             tarea_encontrada = None
             for t in tareas:
                 if t["id"] == id_tarea:
