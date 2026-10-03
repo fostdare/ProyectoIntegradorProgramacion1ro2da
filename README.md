@@ -1,4 +1,4 @@
-# 📋 Gestor de Tareas - Clon Trello (Python Vanilla)
+# 📋 Gestor de Tareas - Lazarus
 
 Aplicación de consola para gestión de tareas al estilo Trello.
 
