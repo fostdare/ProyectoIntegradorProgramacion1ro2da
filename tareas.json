@@ -7,7 +7,7 @@
         "estado": "pendiente",
         "categoria": "Dev",
         "responsable": "Juan",
-        "fecha_limite": "2027-09-24"
+        "fecha_limite": "24/09/2027"
     },
     {
         "id": 2,
@@ -17,6 +17,26 @@
         "estado": "pendiente",
         "categoria": "dev",
         "responsable": "gero",
-        "fecha_limite": "2027-06-03"
+        "fecha_limite": "03/06/2027"
+    },
+    {
+        "id": 3,
+        "titulo": "prueba3",
+        "descripcion": "prueba 3",
+        "prioridad": 2,
+        "estado": "pendiente",
+        "categoria": "DEV",
+        "responsable": "Neru Aceituno",
+        "fecha_limite": "04/10/2027"
+    },
+    {
+        "id": 4,
+        "titulo": "demo 4",
+        "descripcion": "demo 4",
+        "prioridad": 1,
+        "estado": "pendiente",
+        "categoria": "Backend",
+        "responsable": "Alvaro",
+        "fecha_limite": "10/12/2016"
     }
 ]

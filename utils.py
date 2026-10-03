@@ -2,6 +2,31 @@
 # Módulo de validación de entradas por teclado y formateo de pantalla
 
 import sys
+from datetime import datetime
+
+FORMATO_FECHA = "%d/%m/%Y"
+
+
+def validar_fecha(mensaje, permitir_vacio=False):
+    """
+    Solicita una fecha con formato DD/MM/YYYY y la valida.
+    Retorna el string DD/MM/YYYY, None si cancela (Tab/vacío), o "" si permitir_vacio y está vacía.
+    """
+    while True:
+        entrada = _input_inmediato(mensaje)
+        if entrada is None or entrada.strip() == "":
+            if permitir_vacio and entrada is not None:
+                return ""
+            return None
+        texto = entrada.strip()
+        try:
+            fecha = datetime.strptime(texto, FORMATO_FECHA)
+            if fecha.date() < datetime.now().date():
+                print(" Error: La fecha no puede ser anterior a hoy.")
+                continue
+            return texto
+        except ValueError:
+            print(" Error: Formato inválido. Use DD/MM/YYYY (ej. 25/12/2026).")
 
 
 def _input_inmediato(mensaje):
@@ -34,7 +59,7 @@ def _input_inmediato(mensaje):
         # Terminal restaurado, leer el resto de la línea normalmente
         resto = input()
         return ch + resto
-    except (ImportError, AttributeError, termios.error):
+    except (ImportError, AttributeError, OSError):
         # Fallback en sistemas que no soportan termios (Windows, etc.)
         entrada = input(mensaje)
         if entrada.strip() == "" or "\t" in entrada:

@@ -59,7 +59,7 @@ def registrar_log(ruta_archivo, accion, detalle):
     """
     Registra eventos y acciones del usuario con fecha y hora en un log TXT.
     """
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     linea_log = f"[{timestamp}] ACCION: {accion} | DETALLE: {detalle}\n"
     try:
         with open(ruta_archivo, "a", encoding="utf-8") as f:

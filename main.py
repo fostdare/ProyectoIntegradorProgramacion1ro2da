@@ -5,6 +5,14 @@
 import estructuras
 import persistencia
 import utils
+import sys
+
+# Forzar UTF-8 en consola para evitar errores con emojis en Windows
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except (AttributeError, ValueError):
+    pass
 
 RUTA_JSON = persistencia.RUTA_JSON
 RUTA_LOG = persistencia.RUTA_LOG
@@ -116,9 +124,19 @@ def submenu_actualizar_tarea(lista_tareas):
     nuevo_resp = utils._input_inmediato(f"  Nuevo responsable [{tarea_encontrada['responsable']}] (Tab para volver): ")
     if nuevo_resp is None:
         return
-    nueva_fecha = utils._input_inmediato(f"  Nueva fecha límite (AAAA-MM-DD) [{tarea_encontrada['fecha_limite']}] (Tab para volver): ")
+    nueva_fecha = utils._input_inmediato(f"  Nueva fecha límite (DD/MM/YYYY) [{tarea_encontrada['fecha_limite']}] (Tab para volver): ")
     if nueva_fecha is None:
         return
+    if nueva_fecha.strip():
+        from datetime import datetime
+        try:
+            fecha = datetime.strptime(nueva_fecha.strip(), "%d/%m/%Y")
+            if fecha.date() < datetime.now().date():
+                print(" ⚠ La fecha no puede ser anterior a hoy, no se modificó.")
+                nueva_fecha = ""
+        except ValueError:
+            print(" ⚠ Fecha inválida (use DD/MM/YYYY), no se modificó.")
+            nueva_fecha = ""
     
     if nuevo_titulo:
         tarea_encontrada["titulo"] = nuevo_titulo
@@ -143,7 +161,7 @@ def submenu_actualizar_tarea(lista_tareas):
     if nuevo_resp:
         tarea_encontrada["responsable"] = nuevo_resp
     if nueva_fecha:
-        tarea_encontrada["fecha_limite"] = nueva_fecha
+        tarea_encontrada["fecha_limite"] = nueva_fecha.strip()
     
     persistencia.guardar_datos_json(RUTA_JSON, lista_tareas)
     persistencia.registrar_log(RUTA_LOG, "ACTUALIZAR_TAREA", f"Tarea ID {id_tarea} actualizada")
@@ -199,8 +217,8 @@ def menu_principal():
             resp = utils.validar_texto_no_vacio("Ingrese responsable: ")
             if resp is None:
                 continue
-            limite = utils.validar_texto_no_vacio("Ingrese fecha límite (AAAA-MM-DD): ")
-            if limite is None:
+            limite = utils.validar_fecha("Ingrese fecha límite (DD/MM/YYYY): ")
+            if limite is None or limite == "":
                 continue
             
             nuevo_id = estructuras.obtener_siguiente_id(tareas)
