@@ -1,6 +1,6 @@
 # main.py
 # Punto de entrada de la aplicación de consola. Gestor de Tareas / Trello Clon
-# Versión Vanilla Python — Sin FastAPI ni frameworks web
+
 
 import estructuras
 import persistencia
@@ -172,14 +172,10 @@ def menu_principal():
     tareas = persistencia.cargar_datos_json(RUTA_JSON)
     persistencia.registrar_log(RUTA_LOG, "INICIO_SESION", "El usuario inició el programa")
     
-    print("\n" + "=" * 45)
-    print("    📋 GESTOR DE TAREAS - CLON TRELLO")
-    print("    ⚡ Versión Python Vanilla")
-    print("=" * 45)
     
     while True:
         print("\n" + "=" * 45)
-        print("    GESTOR DE TAREAS - CLON TRELLO")
+        print("    Gestor de Tareas - Lazarus")
         print("=" * 45)
         print("  1. Alta / Cargar nueva tarea")
         print("  2. Consultar y filtrar tareas")
