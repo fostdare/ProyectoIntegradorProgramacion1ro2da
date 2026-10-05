@@ -42,6 +42,35 @@ def submenu_cambio_estado(lista_tareas):
     else:
         print(" ❌ No se encontró ninguna tarea con ese ID.")
 
+def submenu_eliminar_tarea(lista_tareas):
+    """Submenú para eliminar una tarea existente."""
+    if not lista_tareas:
+        print("\n[ No hay tareas para eliminar. ]")
+        return
+
+    utils.mostrar_tabla_tareas(lista_tareas)
+    id_tarea = utils.validar_entero_menu(
+        "Ingrese el ID de la tarea a eliminar: ", 1, 999999
+    )
+    if id_tarea is None:
+        return
+
+    confirmar = utils.validar_opcion_lista(
+        "¿Confirma la eliminación? (s/n): ", ["s", "n"]
+    )
+    if confirmar != "s":
+        return
+
+    exito = estructuras.eliminar_tarea(lista_tareas, id_tarea)
+    if exito:
+        persistencia.guardar_datos_json(RUTA_JSON, lista_tareas)
+        persistencia.registrar_log(
+            RUTA_LOG, "ELIMINAR_TAREA", f"Tarea ID {id_tarea} eliminada"
+        )
+        print(" ✅ Tarea eliminada correctamente.")
+    else:
+        print(" ❌ No se encontró ninguna tarea con ese ID.")
+
 def submenu_filtrar(lista_tareas):
     """Submenú para filtrar tareas."""
     print("\n--- FILTRAR TAREAS ---")
@@ -184,12 +213,13 @@ def menu_principal():
         print("  5. Modificar estado de tarea")
         print("  6. Ver estadísticas de productividad")
         print("  7. Exportar reporte a archivo CSV")
+        print("  8. Eliminar tarea")
         print("  0. Salir del programa")
         print()
         print("  💡 Pulsa Tab en cualquier momento para volver al menú principal")
         print("=" * 45)
         
-        opcion = utils.validar_entero_menu("Seleccione una opción: ", 0, 7)
+        opcion = utils.validar_entero_menu("Seleccione una opción: ", 0, 8)
         
         if opcion is None:
             continue
@@ -292,6 +322,9 @@ def menu_principal():
                 print(f"\n ✅ Reporte exportado a {persistencia.RUTA_CSV}")
             else:
                 print(" ❌ Error al generar el reporte.")
+
+        elif opcion == 8:
+            submenu_eliminar_tarea(tareas)
 
         elif opcion == 0:
             persistencia.registrar_log(RUTA_LOG, "CIERRE_SESION", "El usuario cerró el programa")

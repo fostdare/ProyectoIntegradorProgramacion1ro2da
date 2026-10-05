@@ -62,6 +62,16 @@ def cambiar_estado_tarea(lista_tareas, id_tarea, nuevo_estado):
             return True
     return False
 
+def eliminar_tarea(lista_tareas, id_tarea):
+    """
+    Elimina una tarea por su ID. Retorna True si tuvo éxito.
+    """
+    for tarea in lista_tareas:
+        if tarea["id"] == id_tarea:
+            lista_tareas.remove(tarea)
+            return True
+    return False
+
 def calcular_estadisticas_productividad(lista_tareas):
     """
     Calcula y retorna estadísticas descriptivas del tablero de tareas.
