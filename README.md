@@ -8,6 +8,12 @@ Aplicación de consola para gestión de tareas al estilo Trello.
 python main.py
 ```
 
+## Pruebas
+
+```bash
+python -m unittest test_proyecto -v
+```
+
 ## Características
 
 - Alta de nuevas tareas (título, descripción, prioridad, categoría, responsable, fecha límite)
