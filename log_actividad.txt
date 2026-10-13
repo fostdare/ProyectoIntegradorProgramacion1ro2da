@@ -34,3 +34,6 @@
 [02/10/2026 21:09:29] ACCION: INICIO_SESION | DETALLE: El usuario inició el programa
 [02/10/2026 21:32:36] ACCION: INICIO_SESION | DETALLE: El usuario inició el programa
 [02/10/2026 21:32:44] ACCION: CIERRE_SESION | DETALLE: El usuario cerró el programa
+[05/10/2026 14:41:10] ACCION: INICIO_SESION | DETALLE: El usuario inició el programa
+[05/10/2026 14:41:25] ACCION: ELIMINAR_TAREA | DETALLE: Tarea ID 3 eliminada
+[05/10/2026 14:41:42] ACCION: CIERRE_SESION | DETALLE: El usuario cerró el programa

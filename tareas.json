@@ -20,16 +20,6 @@
         "fecha_limite": "03/06/2027"
     },
     {
-        "id": 3,
-        "titulo": "prueba3",
-        "descripcion": "prueba 3",
-        "prioridad": 2,
-        "estado": "pendiente",
-        "categoria": "DEV",
-        "responsable": "Neru Aceituno",
-        "fecha_limite": "04/10/2027"
-    },
-    {
         "id": 4,
         "titulo": "demo 4",
         "descripcion": "demo 4",
