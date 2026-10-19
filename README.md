@@ -40,7 +40,15 @@ proyecto-tareas-console/
 ├── estructuras.py
 ├── persistencia.py
 ├── utils.py
+├── visualizacion.py
+├── test_proyecto.py
+├── generar_informe.py
 ├── tareas.json
 ├── log_actividad.txt
+├── graficos/
 └── README.md
 ```
+
+`graficos/` y `log_actividad.txt` se generan al usar la aplicación, por eso no
+figuran en el repositorio. El informe `Desglose_del_Codigo_Gestor_de_Tareas.docx`
+tampoco: se regenera con `python generar_informe.py`.
