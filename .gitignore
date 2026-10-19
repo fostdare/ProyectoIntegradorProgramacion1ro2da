@@ -11,4 +11,11 @@ env/
 *.swp
 *.swo
 *~
-.reporte_tareas.csv
+
+# Artefactos generados en tiempo de ejecución
+log_actividad.txt
+reporte_tareas.csv
+graficos/
+
+# Caché de herramientas de desarrollo
+.atl/

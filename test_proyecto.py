@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 import estructuras
 import persistencia
 import utils
+import visualizacion
 
 
 def tarea_prueba(id_tarea=1, titulo="Tarea", estado="pendiente",
@@ -288,6 +289,78 @@ class TestValidacionDeEntradas(unittest.TestCase):
             utils.validar_opcion_lista("Categoria: ", ["trabajo", "estudio"]),
             "estudio"
         )
+
+
+class TestVisualizacion(unittest.TestCase):
+    """Eje de investigación 3.8 opción D: verificación de los PNG generados."""
+
+    def setUp(self):
+        self.dir = tempfile.mkdtemp()
+        self.lista = [
+            tarea_prueba(1, "A", "pendiente"),
+            tarea_prueba(2, "B", "en_curso"),
+            tarea_prueba(3, "C", "finalizada", responsable="Beto"),
+            tarea_prueba(4, "D", "finalizada", responsable="Beto"),
+        ]
+
+    def es_png_valido(self, ruta):
+        with open(ruta, "rb") as f:
+            # Los archivos PNG empiezan con estos 8 bytes de firma.
+            return f.read(8) == b"\x89PNG\r\n\x1a\n"
+
+    def test_distribucion_genera_png(self):
+        ruta = visualizacion.generar_grafico_distribucion(
+            self.lista, os.path.join(self.dir, "d.png")
+        )
+        self.assertTrue(os.path.exists(ruta))
+        self.assertGreater(os.path.getsize(ruta), 0)
+        self.assertTrue(self.es_png_valido(ruta))
+
+    def test_avance_genera_png(self):
+        ruta = visualizacion.generar_grafico_avance(
+            self.lista, os.path.join(self.dir, "a.png")
+        )
+        self.assertTrue(os.path.exists(ruta))
+        self.assertTrue(self.es_png_valido(ruta))
+
+    def test_responsables_genera_png(self):
+        ruta = visualizacion.generar_grafico_responsables(
+            self.lista, os.path.join(self.dir, "r.png")
+        )
+        self.assertTrue(os.path.exists(ruta))
+        self.assertTrue(self.es_png_valido(ruta))
+
+    def test_lista_vacia_retorna_none(self):
+        for generar in (
+            visualizacion.generar_grafico_distribucion,
+            visualizacion.generar_grafico_avance,
+            visualizacion.generar_grafico_responsables,
+        ):
+            self.assertIsNone(generar([], os.path.join(self.dir, "vacio.png")))
+
+    def test_responsable_vacio_se_agrupa_como_sin_asignar(self):
+        lista = [tarea_prueba(1, responsable="   "), tarea_prueba(2, responsable="")]
+        ruta = visualizacion.generar_grafico_responsables(
+            lista, os.path.join(self.dir, "sin.png")
+        )
+        self.assertTrue(os.path.exists(ruta))
+
+    def test_todas_las_visualizaciones_devuelve_tres_rutas(self):
+        rutas = visualizacion.generar_visualizaciones(self.lista, self.dir)
+        self.assertEqual(len(rutas), 3)
+        for ruta in rutas:
+            self.assertTrue(self.es_png_valido(ruta))
+
+    def test_directorio_inexistente_se_crea(self):
+        destino = os.path.join(self.dir, "sub", "carpeta")
+        rutas = visualizacion.generar_visualizaciones(self.lista, destino)
+        self.assertTrue(os.path.isdir(destino))
+        self.assertEqual(len(rutas), 3)
+
+    def test_lista_vacia_no_crea_archivos(self):
+        rutas = visualizacion.generar_visualizaciones([], self.dir)
+        self.assertEqual(rutas, [])
+        self.assertEqual(os.listdir(self.dir), [])
 
 
 class TestMostrarTabla(unittest.TestCase):

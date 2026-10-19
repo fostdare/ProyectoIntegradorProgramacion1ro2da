@@ -25,10 +25,12 @@ python -m unittest test_proyecto -v
 - Exportar reporte a CSV
 - Persistencia en JSON
 - Registro de actividad en log TXT
+- Generación de gráficos de estadísticas en PNG (opción 9)
 
 ## Dependencias
 
-Ninguna. Python 3.10+ estándar.
+- Python 3.10+ estándar
+- matplotlib (para la generación de gráficos)
 
 ## Estructura
 

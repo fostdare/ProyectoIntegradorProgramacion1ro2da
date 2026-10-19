@@ -2,9 +2,11 @@
 # Punto de entrada de la aplicación de consola. Gestor de Tareas / Trello Clon
 
 
+import os
 import estructuras
 import persistencia
 import utils
+import visualizacion
 import sys
 
 # Forzar UTF-8 en consola para evitar errores con emojis en Windows
@@ -214,12 +216,13 @@ def menu_principal():
         print("  6. Ver estadísticas de productividad")
         print("  7. Exportar reporte a archivo CSV")
         print("  8. Eliminar tarea")
+        print("  9. Generar gráficos de las estadísticas (PNG)")
         print("  0. Salir del programa")
         print()
         print("  💡 Pulsa Tab en cualquier momento para volver al menú principal")
         print("=" * 45)
         
-        opcion = utils.validar_entero_menu("Seleccione una opción: ", 0, 8)
+        opcion = utils.validar_entero_menu("Seleccione una opción: ", 0, 9)
         
         if opcion is None:
             continue
@@ -325,6 +328,22 @@ def menu_principal():
 
         elif opcion == 8:
             submenu_eliminar_tarea(tareas)
+
+        elif opcion == 9:
+            if not tareas:
+                print("\n[ No hay tareas para graficar. ]")
+                continue
+            directorio_graficos = os.path.join(persistencia.BASE_DIR, "graficos")
+            rutas = visualizacion.generar_visualizaciones(tareas, directorio_graficos)
+            if not rutas:
+                print(" ❌ No se pudieron generar los gráficos.")
+            else:
+                persistencia.registrar_log(
+                    RUTA_LOG, "GENERAR_GRAFICOS", f"{len(rutas)} gráficos generados"
+                )
+                print(f"\n ✅ {len(rutas)} gráficos generados:")
+                for ruta in rutas:
+                    print(f"    - {ruta}")
 
         elif opcion == 0:
             persistencia.registrar_log(RUTA_LOG, "CIERRE_SESION", "El usuario cerró el programa")
