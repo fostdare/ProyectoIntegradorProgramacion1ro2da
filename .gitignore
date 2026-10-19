@@ -17,5 +17,9 @@ log_actividad.txt
 reporte_tareas.csv
 graficos/
 
+# Informe generado por generar_informe.py: queda solo en local.
+# Se regenera corriendo: python generar_informe.py
+Desglose_del_Codigo_Gestor_de_Tareas.docx
+
 # Caché de herramientas de desarrollo
 .atl/
